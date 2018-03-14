@@ -225,7 +225,8 @@ self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
-		</step>     -->
+		</step>     
+-->
 
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
