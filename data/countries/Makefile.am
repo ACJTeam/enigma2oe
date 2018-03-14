@@ -1,5 +1,5 @@
 installdir = $(pkgdatadir)/countries
 
-dist_install_DATA = ca.png \
-                    es.png \
-                    en.png 
+dist_install_DATA = ca_AD.png \
+                    es_ES.png \
+                    en_GB.png 
