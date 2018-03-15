@@ -113,7 +113,9 @@
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
 		<item level="1" text="Channel list update Eventinfo delay" description="Channel list update interval for Eventinfo on cursor moving">config.usage.servicelist_eventinfo_delay</item>
-		<item level="1" text="Show bootvideo on boot" requires="Bootvideo">config.usage.show_bootvideo</item>
+	        <item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
+                <item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channelnumber in your first bouquet.">config.usage.panicchannel</item>
+		<!--	<item level="1" text="Show bootvideo on boot" requires="Bootvideo">config.usage.show_bootvideo</item> -->
 	</setup>
 	<setup level="2" key="epgsettings" title="EPG settings">
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
