@@ -162,7 +162,7 @@ void bsodFatal(const char *component)
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
 		fprintf(f,
-			"teamblue Enigma2 crash log\n\n"
+			"OpenACJ crash log. Soporte en www.altoconsejojedi.es\n\n"
 			"crashdate=%s\n"
 			"compiledate=%s\n"
 			"skin=%s\n"
