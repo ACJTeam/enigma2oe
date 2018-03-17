@@ -23,7 +23,7 @@
 
 static const char *crash_emailaddr =
 #ifndef CRASH_EMAILADDR
-	"no email available";
+	"www.altoconsejojedi.es";
 #else
 	CRASH_EMAILADDR;
 #endif
