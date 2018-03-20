@@ -57,7 +57,7 @@
 				<item weight="0" level="0" text="Basic settings" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item weight="5" level="0" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item weight="10" level="0" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
-				<item weight="20" level="1" entryID="fallbacktuner_settings"><setup id="fallbacktuner"/></item>
+			<!-- 	<item weight="20" level="1" entryID="fallbacktuner_settings"><setup id="fallbacktuner"/></item>   -->
 			</menu>
 
 			<item weight="25" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
