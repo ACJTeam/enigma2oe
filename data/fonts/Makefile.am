@@ -13,9 +13,5 @@ dist_install_DATA = \
 	LiberationSans-Bold.ttf \
 	LiberationSans-BoldItalic.ttf \
 	LiberationSans-Italic.ttf \
-	LiberationSans-Regular.ttf \
-	meteocons.ttf \
-	OpenSans-Regular.ttf \
-	Paxlight.ttf \
-	PaxThin.ttf \
-	setrixHD.ttf
+	LiberationSans-Regular.ttf 
+	
