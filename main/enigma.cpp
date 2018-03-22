@@ -161,11 +161,11 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 		} while (in.good());
 		in.close();
 	}
-	// no config.skin.primary_skin found -> Use default one
+	// if value is empty, means no config.skin.primary_skin exist in settings file, so return just default spinner ( /usr/share/enigma2/spinner )
 	if (value.empty())
 		value = "TeamACJskin/";
 
-	// return SCOPE_CURRENT_SKIN ( /usr/share/enigma2/MYSKIN/skin_default/spinner ) BUT check if /usr/share/enigma2/MYSKIN/skin_default/spinner/wait1.png exist
+	//  if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_CURRENT_SKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner ) BUT check if /usr/share/enigma2/MYSKIN/spinner/wait1.png exist
 	std::string png_location = "/usr/share/enigma2/" + value + "skin_default/spinner/wait1.png";
 	std::ifstream png(png_location.c_str());
 	if (png.good())
