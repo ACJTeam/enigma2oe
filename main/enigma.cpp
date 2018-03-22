@@ -166,7 +166,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 		return value;
 
 	// return SCOPE_CURRENT_SKIN ( /usr/share/enigma2/MYSKIN/skin_default/spinner ) BUT check if /usr/share/enigma2/MYSKIN/skin_default/spinner/wait1.png exist
-	std::string png_location = "/usr/share/enigma2/TeamACJskin" + value + "skin_default/spinner/wait1.png";
+	std::string png_location = "/usr/share/enigma2" + value + "skin_default/spinner/wait1.png";
 	std::ifstream png(png_location.c_str());
 	if (png.good())
 	{
