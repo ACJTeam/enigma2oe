@@ -409,8 +409,8 @@ class ContactInfo(Screen):
 		self["manufacturerinfo"] = StaticText(self.getManufacturerinfo())
 
 	def getManufacturerinfo(self):
-		minfo = "teamBlue\n"
-		minfo += "http://teamblue.tech\n"
+		minfo = "TeamACJ\n"
+		minfo += "http://altoconsejojedi.es\n"
 		return minfo
 
 class MemoryInfo(Screen):
