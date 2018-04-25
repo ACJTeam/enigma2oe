@@ -11,7 +11,7 @@ dist_pkgdata_DATA = \
 	rcpositions.xml \
 	setup.xml \
 	skin_default.xml \
-	skin_default_vuduo2.xml \
+	skin_display_vuduo2.xml \
 	skin_subtitles.xml \
 	skin.xml \
 	freesat.t1 \
