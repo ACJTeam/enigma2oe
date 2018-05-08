@@ -8,7 +8,7 @@ self.condition = (self.backuppath is not None and config.misc.firstrun.value)
 		<text value="Do you want to restore your settings?" />
 		<list>
 			<listentry caption="Yes, restore the settings now" step="restore" />
-			<listentry caption="No, just start my GigaBlue" step="end" />
+			<listentry caption="No, just start my Device" step="end" />
 		</list>
 		<code>
 self.clearSelectedKeys()
@@ -17,7 +17,7 @@ self.selectKey("OK")
 	</step>
 
 	<step id="welcome">
-		<text value="Welcome to the Image restore wizard. The wizard will assist you in upgrading the firmware of your GigaBlue by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
+		<text value="Welcome to the Image restore wizard. The wizard will assist you in upgrading the firmware of your Device by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
 		<list>
 			<listentry caption="OK, guide me through the upgrade process" step="backupquestion" />
 			<listentry caption="Exit the wizard" step="end" />
@@ -78,7 +78,7 @@ self.condition = (self.backuppath is False)
 	</step>
 
 	<step id="upgrade">
-		<text value="Your GigaBlue will now be halted.\nYou need to plug-in your USB-flash drive with your image to restore.\nPower on your GigaBlue and you can flash your backup image.\nAfter flashing you can restore your settings." />
+		<text value="Your Device will now be halted.\nYou need to plug-in your USB-flash drive with your image to restore.\nPower on your Device and you can flash your backup image.\nAfter flashing you can restore your settings." />
 		<list>
 			<listentry caption="Yes, perform a shutdown now." step="shutdown" />
 			<listentry caption="No, do nothing." step="end" />
@@ -90,7 +90,7 @@ self.condition = (self.backuppath is False)
 from enigma import quitMainloop
 quitMainloop(1)
 		</code>
-		<text value="Your GigaBlue is shutting down. Please stand by..." />
+		<text value="Your Device is shutting down. Please stand by..." />
 	</step>
 
 	<step id="end" laststep="true">
