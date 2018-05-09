@@ -45,10 +45,10 @@ class HardwareInfo:
 			self.device_model = self.device_name
 
 		# HDMI capbility
-		if getMachineBuild() in ('gb7325', 'gb7358', 'gb7356', 'gb7362', 'gb73625', 'gb72525', 'gb7252', 'xc7362', 'hd2400', 'hd51'):
+		if getMachineBuild() in ('gb7325', 'gb7358', 'gb7356', 'gb7362', 'gb73625', 'gb72525', 'gb7252', 'xc7362', 'hd2400', 'hd51', 'vusolo2', 'vuduo2', 'vuzero', 'vusolo'):
 			self.device_hdmi = True
 		else:
-			self.device_hdmi = True
+			self.device_hdmi = False
 
 		print "Detected: " + self.get_device_string()
 
