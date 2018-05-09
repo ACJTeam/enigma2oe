@@ -48,7 +48,7 @@ class HardwareInfo:
 		if getMachineBuild() in ('gb7325', 'gb7358', 'gb7356', 'gb7362', 'gb73625', 'gb72525', 'gb7252', 'xc7362', 'hd2400', 'hd51'):
 			self.device_hdmi = True
 		else:
-			self.device_hdmi = False
+			self.device_hdmi = True
 
 		print "Detected: " + self.get_device_string()
 
