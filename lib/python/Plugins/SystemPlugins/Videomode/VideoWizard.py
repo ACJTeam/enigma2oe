@@ -6,6 +6,7 @@ from VideoHardware import video_hw
 
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
+from Components.SystemInfo import SystemInfo
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.HardwareInfo import HardwareInfo
@@ -19,6 +20,9 @@ try:
 except:
 	chipset = "unknown"
 
+has_rca = False
+if getBoxType() in ('mutant51', 'ax51', 'gb800seplus', 'gb800ueplus', 'gbquad', 'gbquadplus', 'gbipbox', 'gbultra', 'gbultraue', 'gbultraueh', 'gbultrase', 'spycat', 'quadbox2400', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
+	has_rca = True
 
 class VideoWizardSummary(WizardSummary):
 	def __init__(self, session, parent):
@@ -68,7 +72,6 @@ class VideoWizard(WizardLanguage, Rc):
 		self.mode = None
 		self.rate = None
 
-
 	def createSummary(self):
 		print "[VideoWizard] createSummary"
 		from Screens.Wizard import WizardSummary
@@ -90,6 +93,8 @@ class VideoWizard(WizardLanguage, Rc):
 				descr = port
 				if descr == 'DVI' and has_hdmi:
 					descr = 'HDMI'
+				if descr == 'Scart' and has_rca:
+					descr = 'RCA'
 				if port != "DVI-PC":
 					list.append((descr,port))
 		list.sort(key = lambda x: x[0])
@@ -110,6 +115,8 @@ class VideoWizard(WizardLanguage, Rc):
 			picname = self.selection
 			if picname == 'DVI' and has_hdmi:
 				picname = "HDMI"
+			if picname == 'Scart' and has_rca:
+				picname = "RCA"					
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + picname + ".png"))
 
 	def inputSelect(self, port):
@@ -161,6 +168,8 @@ class VideoWizard(WizardLanguage, Rc):
 			print "[VideoWizard] mode:", mode
 			if mode[0] == querymode:
 				for rate in mode[1]:
+					if rate in ("auto") and not SystemInfo["Has24hz"]:
+						continue
 					if self.port == "DVI-PC":
 						print "[VideoWizard] rate:", rate
 						if rate == "640x480":
@@ -201,4 +210,4 @@ class VideoWizard(WizardLanguage, Rc):
 			self.hw.setConfiguredMode()
 			self.close()
 
-WizardLanguage.keyNumberGlobal(self, number)
+		WizardLanguage.keyNumberGlobal(self, number)

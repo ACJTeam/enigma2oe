@@ -88,8 +88,27 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif config.av.aspect.value == "4_3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-#		if config.av.videoport.value == "DVI":
-#			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
+		if config.av.videoport.value == "DVI":
+			if level >= 1:
+				if SystemInfo["HasColorspace"]:
+					self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace, _("This option allows you to configure the Colorspace from Auto to RGB")))
+				if SystemInfo["HasColordepth"]:
+					self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth, _("This option allows you to configure the Colordepth for UHD")))
+				if SystemInfo["HasColorimetry"]:
+					self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("This option allows you to configure the Colorimetry for HDR.")))
+				if SystemInfo["HasHdrType"]:
+					self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype, _("This option allows you to configure the HDR type.")))
+				if SystemInfo["HasHDMIpreemphasis"]:
+					self.list.append(getConfigListEntry(_("HDMI use pre-emphasis"), config.av.hdmipreemphasis, _("This option can be useful for long HDMI cables.")))
+				if SystemInfo["HasBypassEdidChecking"]:
+					self.list.append(getConfigListEntry(_("HDMI bypass EDID checking"), config.av.bypassEdidChecking, _("Configure if the HDMI EDID checking should be bypassed as this might solve issue with some TVs.")))
+				self.list.append(getConfigListEntry(_("HDMI allow unsupported modes"), config.av.edid_override, _("This option allows to select video modes even if they are not reported as supported from HDMI-EDID.")))
+				if SystemInfo["HDRSupport"]:
+					self.list.append(getConfigListEntry(_("HLG support"), config.av.hlg_support,_("This option allows you to force the HLG modes for UHD")))
+					self.list.append(getConfigListEntry(_("HDR10 support"), config.av.hdr10_support,_("This option allows you to force the HDR10 modes for UHD")))
+					self.list.append(getConfigListEntry(_("Allow 12bit"), config.av.allow_12bit,_("This option allows you to enable or disable the 12 bit color mode")))
+					self.list.append(getConfigListEntry(_("Allow 10bit"), config.av.allow_10bit,_("This option allows you to enable or disable the 10 bit color mode")))
+
 		if config.av.videoport.value == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
@@ -102,16 +121,6 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
-		if SystemInfo["HasBypassEdidChecking"]:
-			self.list.append(getConfigListEntry(_("Bypass HDMI EDID checking"), config.av.bypassEdidChecking, _("Configure if the HDMI EDID checking should be bypassed as this might solve issue with some TVs.")))
-		if SystemInfo["HasColorspace"]:
-			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace, _("This option allows you to set the Colorspace of HDMI from Auto to RGB")))
-		if SystemInfo["HasColordepth"]:
-			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth, _("This option allows you can config the Colordepth for UHD")))
-		if SystemInfo["HasColorimetry"]:
-			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("This option allows you can config the Colorimetry for HDR.")))
-		if SystemInfo["HasHDMIpreemphasis"]:
-			self.list.append(getConfigListEntry(_("Use HDMI pre-emphasis"), config.av.hdmipreemphasis, _("This option can be useful for long HDMI cables.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -219,16 +228,28 @@ class AudioSetup(Screen, ConfigListScreen):
 		if SystemInfo["CanDownmixDTS"]:
 			self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
 		if level >= 1:
-			if SystemInfo["CanDownmixAAC"]:
-				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
 			self.list.extend((
 				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("Configure the general audio delay of Dolby Digital sound tracks.")),
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
 			))
+			if SystemInfo["CanDownmixAAC"]:
+				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixAACPlus"]:
+				self.list.append(getConfigListEntry(_("AAC plus downmix"), config.av.downmix_aacplus, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixAC3Plus"]:
+				self.list.append(getConfigListEntry(_("AC3 plus downmix"), config.av.downmix_ac3plus, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixDTSHD"]:
+				self.list.append(getConfigListEntry(_("DTS HD downmix"), config.av.downmix_dtshd, _("Configure whether DTS-HD channel sound tracks should be downmixed or transcoded.")))
+			if SystemInfo["CanDownmixWMApro"]:
+				self.list.append(getConfigListEntry(_("WMA pro downmix"), config.av.downmix_wmapro, _("Configure whether WMA pro channel sound tracks should be downmixed or transcoded.")))
+			if SystemInfo["HDMIAudioSource"]:
+				self.list.append(getConfigListEntry(_("HDMI audio source"), config.av.hdmi_audio_source, _("Choose whether multi channel sound tracks should be convert to PCM or SPDIF.")))
+			if SystemInfo["CanAACTranscode"]:
+				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcode_aac, _("Configure whether AAC sound tracks should be transcoded.")))
 			if SystemInfo["HasMultichannelPCM"]:
 				self.list.append(getConfigListEntry(_("Multichannel PCM"), config.av.multichannel_pcm, _("Configure whether multi channel PCM sound should be enabled.")))
 			if SystemInfo["HasAutoVolume"] or SystemInfo["HasAutoVolumeLevel"]:
-				self.list.append(getConfigListEntry(_("Audio auto volume level"), SystemInfo["HasAutoVolume"] and config.av.autovolume or config.av.autovolumelevel, _("This option configures you can set auto volume level.")))
+				self.list.append(getConfigListEntry(_("Audio auto volume level"), SystemInfo["HasAutoVolume"] and config.av.autovolume or config.av.autovolumelevel, _("This option allows you can to set the auto volume level.")))
 			if SystemInfo["Has3DSurround"]:
 				self.list.append(getConfigListEntry(_("3D surround"), config.av.surround_3d, _("This option allows you to enable 3D surround sound.")))
 				if SystemInfo["Has3DSpeaker"] and config.av.surround_3d.value != "none":
